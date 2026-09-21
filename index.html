@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Una flor para ti 💛</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #1a1a2e;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #fff3b0;
+      margin-bottom: 40px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+    }
+
+    .flower-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    /* Centro de la flor */
+    .center {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, #8b5a2b, #4a2e12);
+      border-radius: 50%;
+      z-index: 10;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    /* Pétalos */
+    .petal {
+      position: absolute;
+      width: 35px;
+      height: 90px;
+      background: linear-gradient(to top, #ffd700, #fff066);
+      border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+      transform-origin: bottom center;
+      transition: transform 0.5s ease-in-out, filter 0.3s;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+    }
+
+    /* Disposición de los pétalos */
+    .p1  { transform: translateY(-45px) rotate(0deg); }
+    .p2  { transform: translateY(-45px) rotate(30deg); }
+    .p3  { transform: translateY(-45px) rotate(60deg); }
+    .p4  { transform: translateY(-45px) rotate(90deg); }
+    .p5  { transform: translateY(-45px) rotate(120deg); }
+    .p6  { transform: translateY(-45px) rotate(150deg); }
+    .p7  { transform: translateY(-45px) rotate(180deg); }
+    .p8  { transform: translateY(-45px) rotate(210deg); }
+    .p9  { transform: translateY(-45px) rotate(240deg); }
+    .p10 { transform: translateY(-45px) rotate(270deg); }
+    .p11 { transform: translateY(-45px) rotate(300deg); }
+    .p12 { transform: translateY(-45px) rotate(330deg); }
+
+    /* Efecto al pasar el cursor */
+    .flower-container:hover .petal {
+      filter: brightness(1.2);
+    }
+
+    /* Tallo */
+    .stem {
+      position: absolute;
+      top: 150px;
+      width: 8px;
+      height: 160px;
+      background: linear-gradient(to right, #2e7d32, #4caf50);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    /* Hoja */
+    .leaf {
+      position: absolute;
+      top: 220px;
+      left: 105px;
+      width: 40px;
+      height: 20px;
+      background: #2e7d32;
+      border-radius: 0 100px 0 100px;
+      transform: rotate(-20deg);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Flores amarillas para ti 🌼</h1>
+
+  <div class="flower-container">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="petal p5"></div>
+    <div class="petal p6"></div>
+    <div class="petal p7"></div>
+    <div class="petal p8"></div>
+    <div class="petal p9"></div>
+    <div class="petal p10"></div>
+    <div class="petal p11"></div>
+    <div class="petal p12"></div>
+    <div class="center"></div>
+    <div class="stem"></div>
+    <div class="leaf"></div>
+  </div>
+
+</body>
+</html>
