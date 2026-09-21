@@ -3,125 +3,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Una flor para ti 💛</title>
+  <title>Un regalo especial para ti 💛</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  
   <style>
     body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #1a1a2e;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at center, #1b1726 0%, #0d0b14 100%);
+      color: #f1f5f9;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    h1 {
-      color: #fff3b0;
-      margin-bottom: 40px;
-      font-weight: 300;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+    .font-handwriting {
+      font-family: 'Caveat', cursive;
     }
 
-    .flower-container {
+    /* Ambient Glowing Particles */
+    .bg-particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 223, 89, 0.8) 0%, rgba(255, 215, 0, 0) 70%);
+      pointer-events: none;
+      animation: floatUp 8s infinite ease-in-out;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.3);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Interactive Flower Styling */
+    .flower-wrapper {
       position: relative;
-      width: 200px;
-      height: 200px;
+      width: 220px;
+      height: 220px;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    /* Centro de la flor */
-    .center {
+    .flower-wrapper:hover {
+      transform: scale(1.08);
+    }
+
+    .flower-center {
       position: absolute;
-      width: 50px;
-      height: 50px;
-      background: radial-gradient(circle, #8b5a2b, #4a2e12);
+      width: 58px;
+      height: 58px;
+      background: radial-gradient(circle, #854d0e 0%, #3f2203 100%);
       border-radius: 50%;
       z-index: 10;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: 0 0 20px rgba(234, 179, 8, 0.6), inset 0 0 8px rgba(0,0,0,0.8);
+      border: 2px solid #ca8a04;
     }
 
-    /* Pétalos */
     .petal {
       position: absolute;
-      width: 35px;
-      height: 90px;
-      background: linear-gradient(to top, #ffd700, #fff066);
+      width: 40px;
+      height: 105px;
+      background: linear-gradient(to top, #facc15 0%, #fef08a 80%, #ffffff 100%);
       border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
       transform-origin: bottom center;
-      transition: transform 0.5s ease-in-out, filter 0.3s;
-      box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+      transition: all 0.5s ease-in-out;
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
     }
 
-    /* Disposición de los pétalos */
-    .p1  { transform: translateY(-45px) rotate(0deg); }
-    .p2  { transform: translateY(-45px) rotate(30deg); }
-    .p3  { transform: translateY(-45px) rotate(60deg); }
-    .p4  { transform: translateY(-45px) rotate(90deg); }
-    .p5  { transform: translateY(-45px) rotate(120deg); }
-    .p6  { transform: translateY(-45px) rotate(150deg); }
-    .p7  { transform: translateY(-45px) rotate(180deg); }
-    .p8  { transform: translateY(-45px) rotate(210deg); }
-    .p9  { transform: translateY(-45px) rotate(240deg); }
-    .p10 { transform: translateY(-45px) rotate(270deg); }
-    .p11 { transform: translateY(-45px) rotate(300deg); }
-    .p12 { transform: translateY(-45px) rotate(330deg); }
+    /* Rotation positions for 12 petals */
+    .p1  { transform: translateY(-52px) rotate(0deg); }
+    .p2  { transform: translateY(-52px) rotate(30deg); }
+    .p3  { transform: translateY(-52px) rotate(60deg); }
+    .p4  { transform: translateY(-52px) rotate(90deg); }
+    .p5  { transform: translateY(-52px) rotate(120deg); }
+    .p6  { transform: translateY(-52px) rotate(150deg); }
+    .p7  { transform: translateY(-52px) rotate(180deg); }
+    .p8  { transform: translateY(-52px) rotate(210deg); }
+    .p9  { transform: translateY(-52px) rotate(240deg); }
+    .p10 { transform: translateY(-52px) rotate(270deg); }
+    .p11 { transform: translateY(-52px) rotate(300deg); }
+    .p12 { transform: translateY(-52px) rotate(330deg); }
 
-    /* Efecto al pasar el cursor */
-    .flower-container:hover .petal {
-      filter: brightness(1.2);
+    /* Subtle pulse animation for petals */
+    .flower-wrapper:hover .petal {
+      filter: brightness(1.15) drop-shadow(0 0 8px rgba(250, 204, 21, 0.8));
     }
 
-    /* Tallo */
     .stem {
       position: absolute;
-      top: 150px;
-      width: 8px;
-      height: 160px;
-      background: linear-gradient(to right, #2e7d32, #4caf50);
-      border-radius: 4px;
+      top: 165px;
+      width: 10px;
+      height: 180px;
+      background: linear-gradient(to right, #15803d, #22c55e, #166534);
+      border-radius: 5px;
       z-index: -1;
     }
 
-    /* Hoja */
-    .leaf {
+    .leaf-1 {
       position: absolute;
-      top: 220px;
-      left: 105px;
-      width: 40px;
-      height: 20px;
-      background: #2e7d32;
+      top: 230px;
+      left: 112px;
+      width: 50px;
+      height: 25px;
+      background: #15803d;
       border-radius: 0 100px 0 100px;
-      transform: rotate(-20deg);
+      transform: rotate(-25deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .leaf-2 {
+      position: absolute;
+      top: 260px;
+      right: 112px;
+      width: 50px;
+      height: 25px;
+      background: #166534;
+      border-radius: 100px 0 100px 0;
+      transform: rotate(25deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    /* Page View Transitions */
+    .page {
+      transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    }
+
+    .page-hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.95);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      visibility: hidden;
+    }
+
+    /* Floating Hearts on Card */
+    .floating-heart {
+      position: absolute;
+      color: #facc15;
+      font-size: 1.2rem;
+      pointer-events: none;
+      animation: floatHeart 2s infinite linear;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120px) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
-<body>
+<body class="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
 
-  <h1>Flores amarillas para ti 🌼</h1>
+  <div id="particles-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-  <div class="flower-container">
-    <div class="petal p1"></div>
-    <div class="petal p2"></div>
-    <div class="petal p3"></div>
-    <div class="petal p4"></div>
-    <div class="petal p5"></div>
-    <div class="petal p6"></div>
-    <div class="petal p7"></div>
-    <div class="petal p8"></div>
-    <div class="petal p9"></div>
-    <div class="petal p10"></div>
-    <div class="petal p11"></div>
-    <div class="petal p12"></div>
-    <div class="center"></div>
-    <div class="stem"></div>
-    <div class="leaf"></div>
-  </div>
+  <main id="page-1" class="page w-full max-w-lg flex flex-col items-center justify-center text-center z-10 py-8">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-amber-200 tracking-wide mb-3 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]">
+      Para la mujer que Ilumina mi vida 💛
+    </h1>
+    <p class="text-amber-100/80 text-sm sm:text-base mb-12 font-light tracking-wide">
+      Un detalle lleno de luz para alegrar tu día
+    </p>
 
+    <!-- Interactive Flower Component -->
+    <div onclick="navigateToCard()" class="flower-wrapper mb-28 group" title="Haz clic aquí">
+      <div class="petal p1"></div>
+      <div class="petal p2"></div>
+      <div class="petal p3"></div>
+      <div class="petal p4"></div>
+      <div class="petal p5"></div>
+      <div class="petal p6"></div>
+      <div class="petal p7"></div>
+      <div class="petal p8"></div>
+      <div class="petal p9"></div>
+      <div class="petal p10"></div>
+      <div class="petal p11"></div>
+      <div class="petal p12"></div>
+      <div class="flower-center"></div>
+      <div class="stem"></div>
+      <div class="leaf-1"></div>
+      <div class="leaf-2"></div>
+    </div>
+
+    <!-- Click Prompt -->
+
+<button onclick="navigateToCard()" class="mt-4 px-6 py-2.5 rounded-full bg-amber-400 text-amber-950 hover:bg-amber-300 font-medium transition-all duration-200 text-sm shadow-sm hover:shadow flex items-center gap-2 group">
+      <span>Toca la flor para abrir</span>
+      <span class="group-hover:translate-x-0.5 transition-transform">✨</span>
+    </button>
+  </main>
+
+  <!-- PAGE 2: Card & Photo View -->
+  <main id="page-2" class="page page-hidden w-full max-w-md z-10 py-6 my-auto">
+    <div class="polaroid rounded-sm relative">
+      
+      <!-- Photo Container -->
+      <div class="relative w-full h-64 sm:h-72 bg-stone-100 rounded-sm overflow-hidden mb-5 border border-stone-200/80">
+        <img 
+          src="Foto.jpg" 
+          alt="Fotografía especial" 
+          class="w-full h-full object-cover"
+          onerror="this.src='https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop'"
+        />
+      </div>
+
+      <!-- Written Content -->
+      <div class="px-2 text-center space-y-3">
+        <h2 class="text-3xl font-handwriting text-amber-900 leading-tight">
+          "Para iluminar tu camino..."
+        </h2>
+        
+        <p class="text-stone-600 text-sm sm:text-base leading-relaxed font-light">
+          Quizás no te pueda dar las flores en persona o como yo quisiera, pero quiero que sepas que cada pétalo de esta flor lleva un pedacito de mi cariño y gratitud hacia ti. Que su color amarillo te recuerde siempre la alegría y la luz que traes a mi vida.
+        </p>
+
+        <p class="text-amber-800 font-semibold text-base sm:text-lg font-handwriting text-xl pt-1">
+          ¡Gracias por estar en mi vida! 💛
+        </p>
+      </div>
+
+      <!-- Back Button -->
+      <div class="mt-6 pt-4 border-t border-stone-100 text-center">
+        <button onclick="navigateToFlower()" class="text-xs text-stone-400 hover:text-amber-800 transition-colors inline-flex items-center gap-1">
+          ← Volver a ver la flor
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Generate soft falling petals in the background
+    function createPetals() {
+      const container = document.getElementById('petals-container');
+      const petalCount = 12;
+
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'falling-petal';
+        
+        const size = Math.random() * 10 + 8;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 1.4}px`;
+        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.animationDuration = `${Math.random() * 5 + 7}s`;
+        petal.style.animationDelay = `${Math.random() * 6}s`;
+
+        container.appendChild(petal);
+      }
+    }
+
+    // Smooth page navigation
+    function navigateToCard() {
+      const page1 = document.getElementById('page-1');
+      const page2 = document.getElementById('page-2');
+
+      page1.classList.add('page-hidden');
+      setTimeout(() => {
+        page2.classList.remove('page-hidden');
+      }, 300);
+    }
+
+    function navigateToFlower() {
+      const page1 = document.getElementById('page-1');
+      const page2 = document.getElementById('page-2');
+
+      page2.classList.add('page-hidden');
+      setTimeout(() => {
+        page1.classList.remove('page-hidden');
+      }, 300);
+    }
+
+    // Init
+    window.onload = function() {
+      createPetals();
+    };
+  </script>
 </body>
 </html>
